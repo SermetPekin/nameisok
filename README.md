@@ -12,11 +12,11 @@ To install **nameisok**, simply run:
 pip install nameisok
 ```
 
+## Usage 
+From terminal or command prompt 
 
 ```bash
 nameisok example,my_package,nameisok
-
-
 ```
 
 ```plaintext
