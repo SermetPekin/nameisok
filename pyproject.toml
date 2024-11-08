@@ -1,0 +1,27 @@
+[project]
+name = "nameisok"
+version = "0.1.2"
+description = "A utility package for checking if a package name is available on PyPI."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Sermet Pekin", email = "Sermet.Pekin@gmail.com" }
+]
+license = {text = "MIT"}
+keywords = ["pypi", "package availability", "name checker", "available", "utility"]
+dependencies = [
+    "requests>=2.32.3",
+]
+
+[project.urls]
+repository = "https://github.com/SermetPekin/nameisok"
+documentation = "https://github.com/SermetPekin/nameisok#readme"
+issue_tracker = "https://github.com/SermetPekin/nameisok/issues"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+nameisok = "nameisok.cli:main"
+

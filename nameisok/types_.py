@@ -1,0 +1,3 @@
+
+StrOrTuple = str | tuple[str, ...]
+
