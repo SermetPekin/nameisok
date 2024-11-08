@@ -1,4 +1,9 @@
-[![Install and Run Example](https://github.com/SermetPekin/nameisok-private/actions/workflows/pypi.yml/badge.svg)](https://github.com/SermetPekin/nameisok-private/actions/workflows/pypi.yml)
+[![Python Package](https://github.com/SermetPekin/nameisok/actions/workflows/python-package.yml/badge.svg)](https://github.com/SermetPekin/nameisok/actions/workflows/python-package.yml)
+
+[![PyPI](https://img.shields.io/pypi/v/nameisok)](https://img.shields.io/pypi/v/nameisok) [![Supported Python Versions](https://img.shields.io/pypi/pyversions/nameisok)](https://pypi.org/project/nameisok/) 
+
+
+
 
 # nameisok
 
