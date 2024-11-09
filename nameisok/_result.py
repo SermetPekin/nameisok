@@ -1,9 +1,8 @@
-import requests
 from dataclasses import dataclass
 
 
 @dataclass
 class Result:
-    success: bool
+    exists: bool
     code: int
     value: str

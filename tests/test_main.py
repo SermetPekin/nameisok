@@ -1,4 +1,5 @@
-from nameisok.core import get_check_url, eval_req, show_status_console, get_status_package_cli
+from nameisok.core import get_check_url, eval_req, get_status_package_cli, show_status_console_available, \
+    show_status_console_taken
 
 
 def test_get_url():
@@ -10,18 +11,19 @@ def test_get_url():
 
 def test_eval_req():
     s = eval_req(200, 200)
-    assert s.success
+    assert s.exists
 
 
 def test_show_status_console(capsys):
     with capsys.disabled():
-        show_status_console('test', False)
+        show_status_console_available('test')
+        show_status_console_taken('test')
 
 
 def test_get_status_package_cli(capsys):
     with capsys.disabled():
         r = get_status_package_cli('pandas,example', lambda x: print(x))
-        assert r is False
+        assert tuple(r ) == ( None , None )
 
 
 def test_real_get_status_package_cli(capsys):
