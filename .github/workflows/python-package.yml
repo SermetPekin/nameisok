@@ -26,16 +26,16 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install ruff pytest uv requests
+        python -m pip install ruff pytest uv requests fuzzywuzzy
     - name: Set up virtual environment
       run: |
         uv venv 
         source .venv/bin/activate
-        uv pip install .
-        # pip install -r ./requirements.txt
-    # - name: Run static code analysis with Ruff
-    #   run: |
-    #     ruff check . --ignore F841
+        # uv pip install .
+        uv pip install -r ./requirements.txt
+    - name: Run static code analysis with Ruff
+      run: |
+        ruff check . --ignore F841
     - name: Run tests with pytest
       run: |
         pytest -x
