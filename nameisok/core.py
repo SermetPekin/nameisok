@@ -1,60 +1,21 @@
-"""
-MIT License
-
-Copyright (c) 2024 Sermet Pekin
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-"""
 import requests
-from dataclasses import dataclass
 
-
-@dataclass
-class Result:
-    success: bool
-    code: int
-    value: str
-
-
-def search_package_name(p_name: str) -> bool:
-    url = f"https://pypi.org/search/?q={p_name}"
-    response = requests.get(url)
-    r = response.text.lower()
-    print(r)
-    return p_name.lower() not in response.text.lower()
+from ._result import Result
+from .c_check import check_package_name_extra
 
 
 def get_check_url(p_name: str) -> str:  # test ok
-    url = f"https://pypi.org/project/{p_name}/"
+    # url = f"https://pypi.org/project/{p_name}/"
+    url = f"https://pypi.org/simple/{p_name}/"
     return url
 
-def get_check_url_alternative(p_name: str) -> str:
-    ...
-    # https://www.pepy.tech/projects/darlingoasd
-    #
 
 def get_request_eval_result(url: str) -> Result:
     req = requests.get(url)  # not testing this part [requests]
     return eval_req(req.status_code, requests.codes.ok)  # test ok
 
 
-def eval_req(status_code: int, ok_code: int) -> Result:  # test ok
+def eval_req(status_code: int, ok_code: int = requests.codes.ok) -> Result:  # test ok
     ok = status_code == ok_code
     available_text = 'Available' if not ok else 'Not Available'
     r = Result(ok, status_code, available_text)
@@ -63,7 +24,14 @@ def eval_req(status_code: int, ok_code: int) -> Result:  # test ok
 
 def get_status_package(p_name: str) -> Result:
     url = get_check_url(p_name)  # test ok
-    return get_request_eval_result(url)  # auto testing partly ok
+    result = get_request_eval_result(url)  # auto testing partly ok
+    if not result.success:
+        try:
+            result = check_package_name_extra(p_name)
+        except:
+            ... # we will try to check from bigquery source
+
+    return result
 
 
 def show_status_console(package_name: str, taken: bool) -> None:  # test ok
@@ -74,16 +42,20 @@ def show_status_console(package_name: str, taken: bool) -> None:  # test ok
     print(template)
 
 
-def action_get_status_package(package_name: str) -> None:
+def action_get_status_package(package_name: str) -> bool:
     r = get_status_package(package_name)
     show_status_console(package_name, r.success)
+    return not r.success
 
 
-def get_status_package_cli(package_name: str, action=None) -> None:  # test ok
+def get_status_package_cli(package_name: str, action=None) -> bool:  # test ok
     if action is None:
         action = action_get_status_package
     if ',' in package_name:
+        results = []
         for p in package_name.split(','):
-            action(p)
-        return
-    action(package_name)
+            res = action(p)
+            results.append(res)
+        return all(results)
+    result = action(package_name)
+    return result
