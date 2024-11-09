@@ -33,3 +33,13 @@ nameisok = ["*"]
 
 [tool.setuptools.exclude-package-data]
 nameisok = ["raw/*"]
+
+
+[tool.ruff]
+exclude = [
+
+    "*.ipynb",
+    'ignore*.py'
+#    "tests/*",
+]
+
