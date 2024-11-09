@@ -1,9 +1,9 @@
 [project]
 name = "nameisok"
-version = "0.1.2"
+version = "0.1.5"
 description = "A utility package for checking if a package name is available on PyPI."
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 authors = [
     { name = "Sermet Pekin", email = "Sermet.Pekin@gmail.com" }
 ]
@@ -25,3 +25,11 @@ build-backend = "setuptools.build_meta"
 [project.scripts]
 nameisok = "nameisok.cli:main"
 
+[tool.setuptools]
+packages = ["nameisok"]
+
+[tool.setuptools.package-data]
+nameisok = ["*"]
+
+[tool.setuptools.exclude-package-data]
+nameisok = ["raw/*"]
