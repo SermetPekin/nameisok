@@ -32,10 +32,22 @@ class Result:
     value: str
 
 
+def search_package_name(p_name: str) -> bool:
+    url = f"https://pypi.org/search/?q={p_name}"
+    response = requests.get(url)
+    r = response.text.lower()
+    print(r)
+    return p_name.lower() not in response.text.lower()
+
+
 def get_check_url(p_name: str) -> str:  # test ok
     url = f"https://pypi.org/project/{p_name}/"
     return url
 
+def get_check_url_alternative(p_name: str) -> str:
+    ...
+    # https://www.pepy.tech/projects/darlingoasd
+    #
 
 def get_request_eval_result(url: str) -> Result:
     req = requests.get(url)  # not testing this part [requests]
