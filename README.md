@@ -1,4 +1,4 @@
-[![Python Package](https://github.com/SermetPekin/nameisok/actions/workflows/python-package.yml/badge.svg?2)](https://github.com/SermetPekin/nameisok/actions/workflows/python-package.yml)[![PyPI](https://img.shields.io/pypi/v/nameisok)](https://img.shields.io/pypi/v/nameisok) [![Supported Python Versions](https://img.shields.io/pypi/pyversions/nameisok?2)](https://pypi.org/project/nameisok?2) ![PyPI Downloads](https://static.pepy.tech/badge/nameisok?2)
+[![Python Package](https://github.com/SermetPekin/nameisok/actions/workflows/python-package.yml/badge.svg?2)](https://github.com/SermetPekin/nameisok/actions/workflows/python-package.yml)[![PyPI](https://img.shields.io/pypi/v/nameisok)](https://img.shields.io/pypi/v/nameisok) ![PyPI Downloads](https://static.pepy.tech/badge/nameisok?2)
 
 nameisok is a Python package that helps developers check the availability of package names on PyPI, taking it one step further with enhanced functionality. This tool is perfect for anyone looking to publish new packages and wanting to avoid name conflicts or similar names that could cause confusion.
 Key Features
