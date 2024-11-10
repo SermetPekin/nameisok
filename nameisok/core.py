@@ -6,7 +6,10 @@ from .similar import get_existing_packages, check_name_similarity
 
 
 def get_check_url(p_name: str) -> str:  # test ok
-    # url = f"https://pypi.org/project/{p_name}/"
+    """
+    https://pypi.org/project/{p_name}/
+    https://pypi.org/simple/{p_name}/
+    """
     url = f"https://pypi.org/simple/{p_name}/"
     return url
 
@@ -31,7 +34,7 @@ def get_status_package(p_name: str) -> Result:
     return result
 
 
-def extra_checks_if_available(p_name):
+def extra_checks_if_available(p_name) -> None:
     print('Similarity check begins...')
     check_similarity(p_name)
 
@@ -56,11 +59,18 @@ def show_status_similar_exists(package_name: str, similar_names: list) -> None: 
 
 
 def check_similarity(new_package_name):
-    similar_names = check_name_similarity(new_package_name, get_existing_packages())
+    ep = get_existing_packages()
+    if not ep:
+        import warnings
+        msg = 'Similarity check failed.'
+        warnings.warn(msg)
+        return False
+
+    similar_names = check_name_similarity(new_package_name, ep)
     return similar_names
 
 
-def action_get_status_package(package_name: str) -> bool:
+def action_get_status_package(package_name: str) -> bool | None:
     r = get_status_package(package_name)
     if r.exists:  # pypi + database was checked
         show_status_console_taken(package_name)
@@ -68,6 +78,9 @@ def action_get_status_package(package_name: str) -> bool:
     print(f'First check passed for `{package_name}` 🎉. Now I will check similar packages.')
     # similarity check
     similar_names = check_similarity(package_name)
+    if similar_names is False:
+        return
+
     show_status_similar_exists(package_name, similar_names)
     return not similar_names.__len__() > 0
 
