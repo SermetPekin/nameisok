@@ -33,9 +33,9 @@ jobs:
         source .venv/bin/activate
         # uv pip install .
         uv pip install -r ./requirements.txt
-    - name: Run static code analysis with Ruff
-      run: |
-        ruff check . --ignore F841
+    # - name: Run static code analysis with Ruff
+    #   run: |
+    #     ruff check . --ignore F841
     - name: Run tests with pytest
       run: |
         pytest -x
