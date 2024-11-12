@@ -1,20 +1,25 @@
-[![Python Package](https://github.com/SermetPekin/nameisok/actions/workflows/python-package.yml/badge.svg?2)](https://github.com/SermetPekin/nameisok/actions/workflows/python-package.yml)[![PyPI](https://img.shields.io/pypi/v/nameisok)](https://img.shields.io/pypi/v/nameisok) ![PyPI Downloads](https://static.pepy.tech/badge/nameisok?2)
+
+[![Python Package](https://github.com/SermetPekin/nameisok/actions/workflows/python-package.yml/badge.svg?2)](https://github.com/SermetPekin/nameisok/actions/workflows/python-package.yml)
+[![PyPI](https://img.shields.io/pypi/v/nameisok)](https://img.shields.io/pypi/v/nameisok) ![PyPI Downloads](https://static.pepy.tech/badge/nameisok?2)![t](https://img.shields.io/badge/status-maintained-yellow.svg) [![](https://img.shields.io/github/license/SermetPekin/nameisok.svg)](https://github.com/SermetPekin/nameisok/blob/master/LICENSE.md) [![](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/) 
+
 
 nameisok is a Python package that helps developers check the availability of package names on PyPI, taking it one step further with enhanced functionality. This tool is perfect for anyone looking to publish new packages and wanting to avoid name conflicts or similar names that could cause confusion.
-Key Features
+
+### Key Features
 
 - PyPI Availability Check: Quickly checks PyPI to see if a package name is available for registration.
 - BigQuery Database Check: Uses the PyPI dataset on Google BigQuery for additional verification of package name availability.
 - Similarity Check: Detects names that are too similar to existing packages, based on a customizable similarity threshold, preventing potential naming conflicts.
 
-Installation
+### Installation
 
 To install nameisok, simply run:
-
 
 ```bash
 pip install nameisok
 ```
+
+### Usage
 
 Check Multiple Names
 ```bash
