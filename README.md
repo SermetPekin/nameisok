@@ -4,7 +4,8 @@
 
 
 nameisok is a Python package that helps developers check the availability of package names on PyPI, taking it one step further with enhanced functionality. This tool is perfect for anyone looking to publish new packages and wanting to avoid name conflicts or similar names that could cause confusion.
-Key Features
+
+### Key Features
 
 - PyPI Availability Check: Quickly checks PyPI to see if a package name is available for registration.
 - BigQuery Database Check: Uses the PyPI dataset on Google BigQuery for additional verification of package name availability.
