@@ -11,14 +11,15 @@ nameisok is a Python package that helps developers check the availability of pac
 - BigQuery Database Check: Uses the PyPI dataset on Google BigQuery for additional verification of package name availability.
 - Similarity Check: Detects names that are too similar to existing packages, based on a customizable similarity threshold, preventing potential naming conflicts.
 
-Installation
+### Installation
 
 To install nameisok, simply run:
-
 
 ```bash
 pip install nameisok
 ```
+
+### Usage
 
 Check Multiple Names
 ```bash
