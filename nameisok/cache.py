@@ -35,14 +35,14 @@ def warn(msg):
 
 def get_cache_file(name='names_cache_') -> Path:
     if os.name == 'posix':
-        cache_dir = Path.home() / '.cache' / PACKAGE_NAME  # Linux/macOS: ~/.cache/nameisok
+        cache_dir = Path.home() / '.cache' / PACKAGE_NAME  
     elif os.name == 'nt':
         cache_dir = Path(os.getenv('LOCALAPPDATA',
-                                   Path.home() / 'AppData' / 'Local')) / PACKAGE_NAME  # Windows: %LOCALAPPDATA%\nameisok
+                                   Path.home() / 'AppData' / 'Local')) / PACKAGE_NAME   
     else:
-        cache_dir = Path.home() / '.cache' / PACKAGE_NAME  # Default to Linux-style cache path
+        cache_dir = Path.home() / '.cache' / PACKAGE_NAME   
 
-    cache_dir.mkdir(parents=True, exist_ok=True)  # Create the directory if it doesn't exist
+    cache_dir.mkdir(parents=True, exist_ok=True)   
     return cache_dir / f'{name}.txt'
 
 
