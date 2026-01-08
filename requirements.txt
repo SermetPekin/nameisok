@@ -8,4 +8,4 @@ python-levenshtein==0.26.1
 rapidfuzz==3.10.1
 requests==2.32.3
 setuptools==75.3.0
-urllib3==2.6.0
+urllib3==2.6.3
